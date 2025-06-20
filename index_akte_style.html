@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Operation Rescue: Die Aal-Verschwörung</title>
+    <style>
+        body {
+            background-color: #fefbf6;
+            color: #111;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 40px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: auto;
+            border: 2px solid #222;
+            box-shadow: 5px 5px 12px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 2em;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 1.2em;
+            font-weight: normal;
+            text-align: center;
+            font-style: italic;
+            margin-top: -10px;
+            color: #444;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-top: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .countdown {
+            font-size: 1.6em;
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            border: 1px dashed #444;
+            padding: 20px;
+        }
+        .footer {
+            margin-top: 60px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Operation Rescue: Die Aal-Verschwörung</h1>
+    <h2>Ein emotional unterfinanzierter Rettungsversuch in fünf Akten.</h2>
+
+    <div class="section-title">Zielperson</div>
+    <p>Codename: <strong>Agentin 003</strong><br>
+    Alias: Sarah<br>
+    Status: <em>Reaktiviert</em><br>
+    Einsatzgebiet: Warburg, Westfalen</p>
+
+    <div class="section-title">Mission</div>
+    <p>Lokalisieren Sie fünf verschlüsselte Einsatzpunkte.<br>
+    Entschlüsseln Sie Hinweise zur Aal-Verschwörung.<br>
+    Vermeiden Sie direkten Kontakt mit dem Hauptaal.<br>
+    Erscheinen Sie pünktlich. Optional mit Sonnenbrille.</p>
+
+    <div class="section-title">Countdown zum Einsatzbeginn</div>
+    <div id="countdown" class="countdown"></div>
+
+    <div class="footer">
+        Geheimakte 003-MOPE-WB25 &mdash; Zugriff nur für autorisierte Einheiten.
+    </div>
+
+    <script>
+        const target = new Date("2025-10-11T10:00:00Z").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = target - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                days + " Tage " + hours + " Std " + minutes + " Min " + seconds + " Sek";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "MISSION STARTED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
