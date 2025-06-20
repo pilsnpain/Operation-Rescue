@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Operation Rescue – Die Aal-Verschwörung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+    body {
+      background-color: #1b1b1b;
+      color: #e6e6e6;
+      font-family: 'Space Mono', monospace;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .titelblock h1 {
+      font-size: 2.4em;
+      margin: 0;
+      color: #ff5555;
+      letter-spacing: 2px;
+    }
+
+    .titelblock h2 {
+      margin-top: 0.5em;
+      font-size: 1.4em;
+      font-weight: 400;
+      color: #e6e6e6;
+      letter-spacing: 1px;
+    }
+
+    .linie {
+      width: 80%;
+      max-width: 500px;
+      height: 2px;
+      background-color: #ff5555;
+      margin: 1.5em 0;
+    }
+
+    .countdown {
+      font-size: 2em;
+      padding: 0.6em 1.2em;
+      border: 2px solid #ff5555;
+      border-radius: 10px;
+      background: #000;
+      box-shadow: 0 0 10px #ff5555;
+      font-weight: bold;
+    }
+
+    .teaser {
+      margin-top: 2em;
+      max-width: 600px;
+      font-size: 1em;
+      color: #ccc;
+      line-height: 1.6em;
+    }
+
+    .top-secret {
+      margin-top: 2em;
+      color: #ff5555;
+      font-weight: bold;
+      animation: flicker 1.5s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0; }
+    }
+  </style>
+</head>
+<body onload="document.getElementById('akte-sound').play()">
+
+  <div class="titelblock">
+    <h1>🕵️‍♀️ OPERATION RESCUE</h1>
+    <h2>DIE AAL-VERSCHWÖRUNG</h2>
+  </div>
+
+  <div class="linie"></div>
+
+  <div class="countdown" id="countdown">Lade Countdown…</div>
+
+  <div class="top-secret">TOP SECRET – ZUGRIFF FÜR AGENTIN 003</div>
+
+  <div class="teaser">
+    <p>FALLNUMMER: 003-MOPE-WB25<br>
+    EINSATZLEITUNG: P&P</p>
+    <p>Weitere Informationen werden am <strong>11. Oktober 2025 um 12:00 Uhr</strong> freigegeben.</p>
+    <p>Bis dahin: verdeckt bleiben, Verbindung halten, Pils kaltstellen.</p>
+  </div>
+
+  <audio id="akte-sound" autoplay preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2023/03/21/audio_945ae81e10.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const zielDatum = new Date("2025-10-11T12:00:00").getTime();
+    setInterval(() => {
+      const jetzt = new Date().getTime();
+      const abstand = zielDatum - jetzt;
+
+      const tage = Math.floor(abstand / (1000 * 60 * 60 * 24));
+      const stunden = Math.floor((abstand % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minuten = Math.floor((abstand % (1000 * 60 * 60)) / (1000 * 60));
+      const sekunden = Math.floor((abstand % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${tage} Tage | ${stunden} Std | ${minuten} Min | ${sekunden} Sek`;
+
+      if (abstand < 0) {
+        countdown.innerHTML = "MISSION STARTED!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
