@@ -87,3 +87,38 @@
   <div class="countdown" id="countdown">Lade Countdown…</div>
 
   <div class="top-secret">TOP SECRET – ZUGRIFF FÜR AGENTIN 003</div>
+
+  <div class="teaser">
+    <p>FALLNUMMER: 003-MOPE-WB25<br>
+    EINSATZLEITUNG: P&P</p>
+    <p>Weitere Informationen werden am <strong>11. Oktober 2025 um 12:00 Uhr</strong> freigegeben.</p>
+    <p>Bis dahin: verdeckt bleiben, Verbindung halten, Pils kaltstellen.</p>
+  </div>
+
+  <audio id="akte-sound" autoplay preload="auto">
+    <source src="https://cdn.pixabay.com/audio/2023/03/21/audio_945ae81e10.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const zielDatum = new Date("2025-10-11T12:00:00").getTime();
+    setInterval(() => {
+      const jetzt = new Date().getTime();
+      const abstand = zielDatum - jetzt;
+
+      if (abstand < 0) {
+        countdown.innerHTML = "MISSION STARTED!";
+        return;
+      }
+
+      const tage = Math.floor(abstand / (1000 * 60 * 60 * 24));
+      const stunden = Math.floor((abstand % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minuten = Math.floor((abstand % (1000 * 60 * 60)) / (1000 * 60));
+      const sekunden = Math.floor((abstand % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${tage} Tage | ${stunden} Std | ${minuten} Min | ${sekunden} Sek`;
+    }, 1000);
+  </script>
+
+</body>
+</html>
